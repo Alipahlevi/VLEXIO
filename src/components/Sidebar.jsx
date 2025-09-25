@@ -45,7 +45,7 @@ export default function Sidebar() {
   return (
     <aside
       ref={railRef}
-      className="fixed top-[72px] left-0 h-[calc(100vh-72px)] w-12 bg-white border-r border-gray-200 flex flex-col items-center py-2 gap-2 z-40"
+      className="hidden sm:flex fixed top-[72px] left-0 h-[calc(100vh-72px)] w-12 bg-white border-r border-gray-200 flex-col items-center py-2 gap-2 z-40"
     >
       {menus.map((menu, idx) => {
         const isAppointment = idx === 0;

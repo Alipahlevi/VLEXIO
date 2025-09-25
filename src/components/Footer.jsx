@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t border-gray-200 bg-white pl-16 relative">
-      <div className="absolute left-12 top-0 bottom-0 w-px bg-gray-200 pointer-events-none" />
+    <footer className="w-full border-t border-gray-200 bg-white pl-0 sm:pl-16 relative">
+      <div className="hidden sm:block absolute left-12 top-0 bottom-0 w-px bg-gray-200 pointer-events-none" />
       <div className="max-w-[1600px] mx-auto px-3 py-2 text-[11px] flex items-center justify-between">
         <div className="inline-flex items-center gap-1.5 text-gray-700">
           <img

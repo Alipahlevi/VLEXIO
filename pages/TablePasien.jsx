@@ -394,9 +394,103 @@ export default function TablePasien() {
               </table>
             </div>
           </div>
-          {/* Mobile placeholder */}
-          <div className="lg:hidden p-4 text-xs text-gray-500">
-            Mobile view belum diimplementasikan.
+          {/* Mobile list (cards) */}
+          <div className="lg:hidden p-3 space-y-3">
+            {paginatedData.map((item) => (
+              <div
+                key={item.appointmentId}
+                className="rounded-lg border border-gray-200 bg-white p-3 shadow-sm"
+              >
+                {/* Header: Appointment + status dot + date */}
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <Link
+                      to="/form-pasien"
+                      state={{ from: "table", data: item }}
+                      className="text-[12px] font-semibold text-blue-600 hover:underline"
+                    >
+                      {item.appointmentId}
+                    </Link>
+                    <div className="text-[11px] text-gray-500 mt-0.5">
+                      {item.appDate}
+                    </div>
+                  </div>
+                  <img
+                    src={roundIconForStatus(item.status)}
+                    alt={item.status}
+                    className="h-3.5 w-3.5 mt-0.5"
+                  />
+                </div>
+
+                {/* Patient + Doctor */}
+                <div className="mt-2 flex items-start gap-2">
+                  <div className="w-9 h-9 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-[11px] font-semibold">
+                    {formatInitials(item.patientName)}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-[12px] font-medium text-gray-800 truncate">
+                      {item.patientName}
+                    </div>
+                    <div className="text-[11px] text-gray-500">
+                      {item.patientGender} · {item.patientDOB}
+                    </div>
+                    <div className="mt-1 flex items-center gap-2">
+                      <img
+                        src="/DoctorLogo.png"
+                        className="h-6 w-6 rounded-full ring-1 ring-gray-200"
+                      />
+                      <div className="text-[11px] text-gray-700 truncate">
+                        <span className="font-medium text-gray-800">
+                          {item.doctorName}
+                        </span>
+                        {item.doctorSpecialist && (
+                          <span className="ml-1 text-amber-600">
+                            · {item.doctorSpecialist}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Channel / Service / Phone */}
+                <div className="mt-2 flex flex-wrap items-center gap-2">
+                  <span
+                    className={`inline-block px-2 py-0.5 rounded text-[10px] font-medium ${getChannelColor(
+                      item.channel
+                    )}`}
+                  >
+                    {item.channel}
+                  </span>
+                  <span
+                    className={`inline-block px-2 py-0.5 rounded text-[10px] font-semibold ${
+                      item.serviceUnit === "EYE CLINIC"
+                        ? "bg-blue-100 text-blue-700"
+                        : "bg-purple-100 text-purple-700"
+                    }`}
+                  >
+                    {item.serviceUnit}
+                  </span>
+                  <span className="ml-auto inline-flex items-center gap-1 text-[11px] text-gray-700">
+                    <img src="/LogoPhone.png" className="h-3.5 w-3.5" />
+                    <span className="tracking-widest">**********</span>
+                  </span>
+                </div>
+
+                {/* Footer row: last update + menu */}
+                <div className="mt-2 flex items-center gap-2">
+                  <div className="text-[10px] text-gray-600 leading-snug">
+                    <span className="font-medium text-gray-700">
+                      {item.lastUpdateBy}
+                    </span>{" "}
+                    {item.lastUpdate}
+                  </div>
+                  <button className="ml-auto h-8 w-8 flex items-center justify-center rounded border border-gray-300 bg-white hover:bg-gray-50 text-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-400">
+                    <span className="text-lg -mt-1 leading-none">⋯</span>
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
           {/* Pagination */}
           <div className="bg-white px-3 py-2 border-t border-gray-200">

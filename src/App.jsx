@@ -44,7 +44,7 @@ function App() {
         <Navbar />
         <Sidebar />
 
-        <main className="pl-16 pt-[72px]">
+        <main className="pl-0 sm:pl-16 pt-[72px]">
           <ErrorBoundary>
             <Routes>
               <Route path="/" element={<TablePasien />} />
